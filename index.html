@@ -49,15 +49,6 @@
     margin-bottom: 20px;
   }
 
-  /* Gotcha reveal */
-  #gotcha {
-    margin-top: 30px;
-    font-size: 35px;
-    color: red;
-    font-weight: bold;
-    display: none;
-  }
-
   /* Reveal button styling */
   #revealBtn {
     margin-top: 20px;
@@ -118,20 +109,29 @@
     <p style="font-style: italic;">“Your luck is unbelievable — literally.”</p>
   </div>
 
-  <div id="gotcha">😂 GOTCHA! It's actually me! 😂</div>
-
 </div>
 
 <script>
-/* ---- BUTTON AND PRANK REVEAL ---- */
+/* ---- BUTTON AND FULL-SCREEN PRANK REVEAL ---- */
 const revealBtn = document.getElementById('revealBtn');
-const loadingText = document.getElementById('loading');
-const gotcha = document.getElementById('gotcha');
 
 revealBtn.addEventListener('click', () => {
-  loadingText.style.display = 'none';
-  revealBtn.style.display = 'none';
-  gotcha.style.display = 'block';
+  // Clear everything on the page
+  document.body.innerHTML = '';
+
+  // Add confetti canvas back
+  const canvas = document.getElementById('confetti');
+  document.body.appendChild(canvas);
+
+  // Add full-screen GOTCHA message
+  const msg = document.createElement('div');
+  msg.innerText = '😂 GOTCHA! It\'s actually me! 😂';
+  msg.style.fontSize = '60px';
+  msg.style.color = 'red';
+  msg.style.fontWeight = 'bold';
+  msg.style.textAlign = 'center';
+  msg.style.marginTop = '20%';
+  document.body.appendChild(msg);
 });
 
 
@@ -180,5 +180,4 @@ loop();
 </script>
 
 </body>
-
 </html>
