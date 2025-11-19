@@ -116,14 +116,16 @@
 const revealBtn = document.getElementById('revealBtn');
 
 revealBtn.addEventListener('click', () => {
-  // Clear everything on the page
+  // Save the canvas
+  const canvas = document.getElementById('confetti');
+
+  // Clear everything else
   document.body.innerHTML = '';
 
-  // Add confetti canvas back
-  const canvas = document.getElementById('confetti');
+  // Add the canvas back
   document.body.appendChild(canvas);
 
-  // Add full-screen GOTCHA message
+  // Create and show the GOTCHA message
   const msg = document.createElement('div');
   msg.innerText = '😂 GOTCHA! It\'s actually me! 😂';
   msg.style.fontSize = '60px';
