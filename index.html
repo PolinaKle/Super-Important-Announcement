@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,6 +58,21 @@
     display: none;
   }
 
+  /* Reveal button styling */
+  #revealBtn {
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px 25px;
+    background-color: gold;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  #revealBtn:hover {
+    background-color: #e6c35d;
+  }
+
   /* Confetti canvas */
   canvas {
     position: fixed;
@@ -83,6 +97,9 @@
     <h2>Congratulations <strong>Chagan Zorlu</strong>!</h2>
     <h1>You have won <span style="color: green;">$593,000,000</span>! 💰🎉</h1>
     <h3 id="loading">⏳ Processing your prize...</h3>
+    
+    <!-- Reveal button -->
+    <button id="revealBtn">Click to get the prize</button>
   </div>
 
   <!-- Certificate -->
@@ -97,7 +114,7 @@
     <h2>For winning an extraordinary amount of:</h2>
     <h1 style="color: green;">$593,000,000 USD</h1>
 
-    <p>Issued: November 2025</p>
+    <p>Issued: November 19 2025</p>
     <p style="font-style: italic;">“Your luck is unbelievable — literally.”</p>
   </div>
 
@@ -105,14 +122,17 @@
 
 </div>
 
-
 <script>
-/* ---- TIMING ---- */
+/* ---- BUTTON AND PRANK REVEAL ---- */
+const revealBtn = document.getElementById('revealBtn');
+const loadingText = document.getElementById('loading');
+const gotcha = document.getElementById('gotcha');
 
-setTimeout(() => {
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("gotcha").style.display = "block";
-}, 4000);
+revealBtn.addEventListener('click', () => {
+  loadingText.style.display = 'none';
+  revealBtn.style.display = 'none';
+  gotcha.style.display = 'block';
+});
 
 
 /* ---- CONFETTI ANIMATION ---- */
@@ -160,4 +180,5 @@ loop();
 </script>
 
 </body>
+
 </html>
