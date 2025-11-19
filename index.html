@@ -114,16 +114,11 @@
 <script>
 /* ---- BUTTON AND FULL-SCREEN PRANK REVEAL ---- */
 const revealBtn = document.getElementById('revealBtn');
+const wrapper = document.querySelector('.wrapper');
 
 revealBtn.addEventListener('click', () => {
-  // Save the canvas
-  const canvas = document.getElementById('confetti');
-
-  // Clear everything else
-  document.body.innerHTML = '';
-
-  // Add the canvas back
-  document.body.appendChild(canvas);
+  // Hide the winner announcement and certificate
+  wrapper.style.display = 'none';
 
   // Create and show the GOTCHA message
   const msg = document.createElement('div');
