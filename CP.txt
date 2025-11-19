@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Winner Announcement</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #f0e6c8;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  /* Winner + certificate container */
+  .wrapper {
+    padding-top: 30px;
+  }
+
+  /* Winner announcement styling */
+  .winner-header {
+    background: gold;
+    padding: 20px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.25);
+  }
+
+  .winner-header img {
+    width: 160px;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-top: 10px;
+  }
+
+  /* Certificate styling */
+  .certificate {
+    border: 8px solid #b8860b;
+    padding: 30px;
+    width: 70%;
+    margin: 30px auto;
+    background: #fffdf1;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    font-family: 'Georgia', serif;
+  }
+
+  .certificate img {
+    width: 160px;
+    border-radius: 50%;
+    border: 5px solid #caa948;
+    margin-bottom: 20px;
+  }
+
+  /* Gotcha reveal */
+  #gotcha {
+    margin-top: 30px;
+    font-size: 35px;
+    color: red;
+    font-weight: bold;
+    display: none;
+  }
+
+  /* Confetti canvas */
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Confetti -->
+<canvas id="confetti"></canvas>
+
+<div class="wrapper">
+
+  <!-- Winner Announcement -->
+  <div class="winner-header">
+    <h1>🎉 MASSIVE JACKPOT WINNER! 🎉</h1>
+    <img src="Screenshot 2025-11-19 145535.jpg" alt="Winner Photo">
+    <h2>Congratulations <strong>Chagan Zorlu</strong>!</h2>
+    <h1>You have won <span style="color: green;">$593,000,000</span>! 💰🎉</h1>
+    <h3 id="loading">⏳ Processing your prize...</h3>
+  </div>
+
+  <!-- Certificate -->
+  <div class="certificate">
+    <h1>🏆 OFFICIAL WINNER CERTIFICATE 🏆</h1>
+
+    <img src="Screenshot 2025-11-19 145535.jpg" alt="Winner Photo">
+
+    <h2>This certificate is awarded to:</h2>
+    <h1><strong>Chagan Zorlu</strong></h1>
+
+    <h2>For winning an extraordinary amount of:</h2>
+    <h1 style="color: green;">$593,000,000 USD</h1>
+
+    <p>Issued: November 2025</p>
+    <p style="font-style: italic;">“Your luck is unbelievable — literally.”</p>
+  </div>
+
+  <div id="gotcha">😂 GOTCHA! It's actually me! 😂</div>
+
+</div>
+
+
+<script>
+/* ---- TIMING ---- */
+
+setTimeout(() => {
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("gotcha").style.display = "block";
+}, 4000);
+
+
+/* ---- CONFETTI ANIMATION ---- */
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const confettis = [];
+const colors = ["#e63946","#f1fa8c","#06d6a0","#118ab2","#ffd166"];
+
+function ConfettiPiece() {
+  this.x = Math.random() * canvas.width;
+  this.y = Math.random() * canvas.height - canvas.height;
+  this.size = Math.random() * 8 + 4;
+  this.speed = Math.random() * 3 + 2;
+  this.color = colors[Math.floor(Math.random() * colors.length)];
+}
+
+ConfettiPiece.prototype.update = function() {
+  this.y += this.speed;
+  if (this.y > canvas.height) {
+    this.y = -10;
+    this.x = Math.random() * canvas.width;
+  }
+};
+
+ConfettiPiece.prototype.draw = function() {
+  ctx.fillStyle = this.color;
+  ctx.fillRect(this.x, this.y, this.size, this.size);
+};
+
+function loop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  confettis.forEach(c => { c.update(); c.draw(); });
+  requestAnimationFrame(loop);
+}
+
+for (let i = 0; i < 200; i++) {
+  confettis.push(new ConfettiPiece());
+}
+
+loop();
+</script>
+
+</body>
+</html>
